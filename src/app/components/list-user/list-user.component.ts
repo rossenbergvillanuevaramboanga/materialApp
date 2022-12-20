@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { DialogService } from 'src/app/services/dialog.service';
 import { UserService } from 'src/app/services/user.service';
+import { SnackbarComponent } from 'src/app/shared/snackbar/snackbar.component';
+import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-list-user',
@@ -28,7 +30,7 @@ export class ListUserComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private userService: UserService, private router: Router, private dialogService: DialogService) { }
+  constructor(private userService: UserService, private router: Router, private dialogService: DialogService, private snackbarService: SnackbarService) { }
 
   ngOnInit(): void {
     this.getData();
@@ -54,11 +56,13 @@ export class ListUserComponent implements OnInit {
       .afterClosed().subscribe(res => {
         if (res) {
           this.userService.deleteById(userId).subscribe(
-            result => { this.dataSource.data = result }
+            result => {
+              this.dataSource.data = result;
+              this.snackbarService.openSnackbar("Eliminazione Effettuata!")
+            }
           );
         }
       });
-
   }
 
   editUser(userId: number) {

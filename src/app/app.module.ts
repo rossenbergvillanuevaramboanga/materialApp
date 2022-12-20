@@ -11,6 +11,7 @@ import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-c
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
+import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     ListUserComponent,
     DetailUserComponent,
     MatConfirmDialogComponent,
-    EditUserComponent
+    EditUserComponent,
+    SnackbarComponent
 
   ],
   imports: [
