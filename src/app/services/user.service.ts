@@ -40,7 +40,6 @@ export class UserService {
   }
 
   deleteById(userId: number): Observable<User[]> {
-
     this.ELEMENT_DATA = this.ELEMENT_DATA.filter(elem => {
       return elem.id !== userId
     });
@@ -48,11 +47,12 @@ export class UserService {
   }
 
   updateUser(user: User): Observable<User[]> {
-    this.ELEMENT_DATA = this.ELEMENT_DATA.map(elem => {
-      if (elem.id === user.id) {
-        return { ...elem, nome: user.nome, cognome: user.cognome, dataDiNascita: user.dataDiNascita };
+    this.ELEMENT_DATA.forEach((elem, index) => {
+      if (elem.id == user.id) {
+        return of(this.ELEMENT_DATA[index] = user);
+        // return { ...elem, nome: user.nome, cognome: user.cognome, dataDiNascita: user.dataDiNascita };
       }
-      return elem;
+      return of(user);
     });
     return of(this.ELEMENT_DATA);
   }

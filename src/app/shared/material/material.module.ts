@@ -8,6 +8,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -25,7 +28,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatListModule,
     MatDialogModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
 
   ],
   exports: [
@@ -36,7 +41,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatListModule,
     MatDialogModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule
 
   ]
 })
