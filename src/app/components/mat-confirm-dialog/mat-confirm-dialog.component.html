@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Conferma cancellazione</h1>
+<div mat-dialog-content>
+    {{data.message}}
+</div>
+<div mat-dialog-actions>
+    <button mat-button id="no-button" [mat-dialog-close]="false">No</button>
+    <button mat-flat-button color="warn" id="yes-button" [mat-dialog-close]="true">Ok</button>
+</div>

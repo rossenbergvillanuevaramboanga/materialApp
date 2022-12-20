@@ -1,1 +1,30 @@
-<p>detail-user works!</p>
+<div style="padding: 20px">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Dettagli Utente</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-list>
+                <mat-list-item>
+                    <mat-icon matListItemIcon>account_circle</mat-icon>
+                    <div matListItemTitle>{{selectedUser?.id}}</div>
+                    <div matListItemLine>ID</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListItemIcon>badge</mat-icon>
+                    <div matListItemTitle>{{selectedUser?.nome}} {{selectedUser?.cognome}}</div>
+                    <div matListItemLine>NOME | COGNOME</div>
+                </mat-list-item>
+                <mat-list-item>
+                    <mat-icon matListItemIcon>event</mat-icon>
+                    <div matListItemTitle>{{selectedUser?.dataDiNascita}}</div>
+                    <div matListItemLine>DATA DI NASCITA</div>
+                </mat-list-item>
+            </mat-list>
+
+        </mat-card-content>
+        <button mat-raised-button color="accent" [routerLink]="['/list']">Torna Indietro</button>
+        <mat-card-footer>
+        </mat-card-footer>
+    </mat-card>
+</div>
