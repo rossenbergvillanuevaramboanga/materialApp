@@ -9,9 +9,13 @@ export class SnackbarService {
 
   constructor(private _snackBar: MatSnackBar) { }
 
-  openSnackbar(data: string) {
+  openSnackbar(data: string,) {
     this._snackBar.openFromComponent(SnackbarComponent, {
-      data, duration: 3000
+      data,
+      duration: 2000,
+      horizontalPosition: 'center',
+      verticalPosition: 'top',
+      panelClass: 'success'
     });
   }
 }
