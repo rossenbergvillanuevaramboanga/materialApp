@@ -2,7 +2,8 @@
 
     <mat-card>
         <mat-card-header>
-            <mat-card-title>Modifica Utente</mat-card-title>
+            <mat-card-title *ngIf="isCreate()">Crea Utente</mat-card-title>
+            <mat-card-title *ngIf="!isCreate()">Modifica Utente</mat-card-title>
         </mat-card-header>
 
         <form>
@@ -27,7 +28,9 @@
             </mat-card-content>
             <mat-card-footer>
                 <button mat-raised-button color="primary" type="button" (click)="update()"
-                    *ngIf="isReadOnlyBott()">Conferma</button>
+                    *ngIf="isReadOnlyBott() && !isCreate()">Conferma</button>
+                <button mat-raised-button color="primary" type="button" (click)="create()"
+                    *ngIf="isCreate()">Salva</button>
                 <button mat-raised-button color="secondary" type="button" [routerLink]="['/list']">Indietro</button>
             </mat-card-footer>
 

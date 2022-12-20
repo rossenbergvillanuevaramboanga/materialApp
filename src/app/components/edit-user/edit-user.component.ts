@@ -18,15 +18,23 @@ export class EditUserComponent {
 
   ngOnInit(): void {
     let idParam = Number(this.route.snapshot.paramMap.get('id'));
-    this.userService.findById(idParam).subscribe({
-      next: user => {
-        this.selectedUser = user;
-      }
-    });
+    if (idParam) {
+      this.userService.findById(idParam).subscribe({
+        next: user => {
+          this.selectedUser = Object.assign({}, user);
+        }
+      });
+    }
   }
 
   update() {
     this.userService.updateUser(this.selectedUser!).subscribe(
+      result => { this.router.navigate(['list']) }
+    )
+  }
+
+  create() {
+    this.userService.insertUser(this.selectedUser!).subscribe(
       result => { this.router.navigate(['list']) }
     )
   }
@@ -48,6 +56,15 @@ export class EditUserComponent {
     else {
 
       return true;
+    }
+  }
+
+  isCreate() {
+    if ((this.router.url.split("/")[2] === undefined)) {
+      return true;
+    }
+    else {
+      return false;
     }
   }
 

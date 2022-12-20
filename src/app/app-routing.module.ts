@@ -18,6 +18,10 @@ const routes: Routes = [
     component: EditUserComponent
   },
   {
+    path: 'edit',
+    component: EditUserComponent
+  },
+  {
     path: '',
     redirectTo: 'list',
     pathMatch: 'full'

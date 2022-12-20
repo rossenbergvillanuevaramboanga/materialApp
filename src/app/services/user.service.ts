@@ -52,8 +52,15 @@ export class UserService {
         return of(this.ELEMENT_DATA[index] = user);
         // return { ...elem, nome: user.nome, cognome: user.cognome, dataDiNascita: user.dataDiNascita };
       }
-      return of(user);
+      else {
+        return of(user);
+      }
     });
+    return of(this.ELEMENT_DATA);
+  }
+
+  insertUser(user: User): Observable<User[]> {
+    this.ELEMENT_DATA.push({ ...user, id: this.ELEMENT_DATA.slice(-1)[0].id! + 1 })
     return of(this.ELEMENT_DATA);
   }
 

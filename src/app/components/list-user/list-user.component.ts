@@ -72,4 +72,8 @@ export class ListUserComponent implements OnInit {
     this.router.navigate(['detail/', userId])
   }
 
+  createUser() {
+    this.router.navigate(['edit'])
+  }
+
 }
