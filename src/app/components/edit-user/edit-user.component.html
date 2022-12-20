@@ -1,37 +1,53 @@
 <div style="padding: 20px">
 
-    <mat-card>
+    <mat-card style="align-items: center; padding: 20px;">
+
         <mat-card-header>
             <mat-card-title *ngIf="isCreate()">Crea Utente</mat-card-title>
             <mat-card-title *ngIf="!isCreate()">Modifica Utente</mat-card-title>
         </mat-card-header>
 
-        <form>
+        <form [formGroup]="userReactive" (submit)="isCreate()?create():update()">
 
             <mat-card-content>
-                <input type="hidden" [(ngModel)]="selectedUser!.id" [ngModelOptions]="{standalone: true}">
-                <mat-form-field appearance="outline">
-                    <mat-label>Nome</mat-label>
-                    <input matInput type="text" [(ngModel)]="selectedUser!.nome" [readonly]="isReadOnly()"
-                        [ngModelOptions]="{standalone: true}">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Cognome</mat-label>
-                    <input matInput [(ngModel)]="selectedUser!.cognome" [readonly]="isReadOnly()"
-                        [ngModelOptions]="{standalone: true}">
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Data Di Nascita</mat-label>
-                    <input matInput [(ngModel)]="selectedUser!.dataDiNascita" [readonly]="isReadOnly()"
-                        [ngModelOptions]="{standalone: true}">
-                </mat-form-field>
+                <input type="hidden" formControlName="id">
+                <p>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nome</mat-label>
+                        <input matInput type="text" formControlName="nome" [readonly]="isReadOnly()">
+                        <mat-error *ngIf="userReactive.get('nome')?.hasError('required')">Nome obbligatorio</mat-error>
+                        <mat-error *ngIf="userReactive.get('nome')?.hasError('minlength')">Minimo 4
+                            caratteri</mat-error>
+                    </mat-form-field>
+                </p>
+                <p>
+
+                    <mat-form-field appearance="outline">
+                        <mat-label>Cognome</mat-label>
+                        <input matInput type="text" formControlName="cognome" [readonly]="isReadOnly()">
+                        <mat-error *ngIf="userReactive.get('cognome')?.hasError('required')">Cognome
+                            obbligatorio</mat-error>
+                        <mat-error *ngIf="userReactive.get('cognome')?.hasError('minlength')">Minimo 4
+                            caratteri</mat-error>
+                    </mat-form-field>
+                </p>
+                <p>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Data Di Nascita</mat-label>
+                        <input matInput formControlName="dataDiNascita" [readonly]="isReadOnly()">
+                        <mat-error *ngIf="userReactive.get('nome')?.hasError('required')">Data di Nascita
+                            obbligatorio</mat-error>
+                    </mat-form-field>
+                </p>
+
             </mat-card-content>
-            <mat-card-footer>
-                <button mat-raised-button color="primary" type="button" (click)="update()"
-                    *ngIf="isReadOnlyBott() && !isCreate()">Conferma</button>
-                <button mat-raised-button color="primary" type="button" (click)="create()"
-                    *ngIf="isCreate()">Salva</button>
+
+            <mat-card-footer style="display: flex; flex-direction: row; justify-content: center; gap: 20px;">
+
+                <button mat-raised-button color="primary" type="submit" [disabled]="userReactive.invalid">Salva</button>
                 <button mat-raised-button color="secondary" type="button" [routerLink]="['/list']">Indietro</button>
+
             </mat-card-footer>
 
         </form>

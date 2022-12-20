@@ -1,10 +1,11 @@
 
 import { Dialog } from '@angular/cdk/dialog';
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/model/user';
 import { DialogService } from 'src/app/services/dialog.service';
 import { UserService } from 'src/app/services/user.service';
@@ -19,7 +20,6 @@ import { SnackbarService } from 'src/app/shared/snackbar/snackbar.service';
 
 export class ListUserComponent implements OnInit {
 
-
   displayedColumns: string[] = ['id', 'nome', 'cognome', 'dataDiNascita', 'azioni'];
   dataSource!: MatTableDataSource<User>;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -30,7 +30,8 @@ export class ListUserComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  constructor(private userService: UserService, private router: Router, private dialogService: DialogService, private snackbarService: SnackbarService) { }
+  constructor(private userService: UserService, private router: Router, private dialogService: DialogService, private snackbarService: SnackbarService
+  ) { }
 
   ngOnInit(): void {
     this.getData();

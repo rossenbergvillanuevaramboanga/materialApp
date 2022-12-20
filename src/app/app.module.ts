@@ -10,7 +10,7 @@ import { DetailUserComponent } from './components/detail-user/detail-user.compon
 import { MatConfirmDialogComponent } from './components/mat-confirm-dialog/mat-confirm-dialog.component';
 import { EditUserComponent } from './components/edit-user/edit-user.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SnackbarComponent } from './shared/snackbar/snackbar.component';
 
 @NgModule({
@@ -28,7 +28,8 @@ import { SnackbarComponent } from './shared/snackbar/snackbar.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [{ provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'outline' } }],
   bootstrap: [AppComponent]
